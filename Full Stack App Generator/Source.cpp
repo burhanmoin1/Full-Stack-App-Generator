@@ -50,11 +50,12 @@ void VisualStudioOpen() {
 }
 
 void createFolder(const string& basePath) {
+    string webapp = " Web App";
     cout << "Enter the name of the initial folder: ";
     string folderName;
     cin >> folderName;
 
-    string initialFolder = basePath + "\\" + folderName;
+    string initialFolder = basePath + "\\" + folderName + webapp;
 
     if (!fs::exists(initialFolder)) {
         fs::create_directory(initialFolder);
@@ -72,8 +73,11 @@ void createFolder(const string& basePath) {
         fs::create_directory(frontendFolder);
         cout << "App created successfully" << endl;
     }
+    if (!fs::exists(backendFolder)) {
+        fs::create_directory(backendFolder);
+        cout << "Created subfolder: " << backendFolder << endl;
+    }
 }
-
 void exitProgram() {
     cout << "Exiting program." << endl;
     exit(0); // Terminate the program
@@ -94,7 +98,7 @@ int main() {
             break;
         }
         case 2: {
-            displayFolders(basePath); // Display all of the apps
+            displayFolders(basePath);
             break;
         }
         case 3: {
